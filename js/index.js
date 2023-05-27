@@ -85,11 +85,16 @@ function renderFiles() {
         let pathRender = file.base
         let fileName = file.file.name
         if (file.file.type != 'image/png') {
-            pathRender = defaultImagePath
+            pathRender = getIconFile(file.file)
             fileName = `${fileName} (Default image)`
         }
+
+
+
         html += `
-                <div style="display:grid;"> 
+                <div style="display:grid;border: 2px dashed #38c172;
+                padding: 10px;margin:5px
+            "> 
                     <img src="${pathRender}" alt="${file.file.name}" width="100px" height="100px">
                     <small> ${fileName} </small>
                 </div>
@@ -107,4 +112,45 @@ function dragOverText() {
 }
 function dropText() {
     textZone.innerText = ""
+}
+
+function getIconFile(file){
+    console.log(file, getType(file))
+    switch (getType(file)) {
+        case 'application/pdf':
+            return './img/pdf.png'
+            break;
+        case 'application/msword':
+            return './img/word.png'
+            break;
+        case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+            return './img/word.png'
+            break;
+        case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+            return './img/excel.png'
+            break;
+        case 'application/zip':
+            return './img/zip.ico'
+            break;
+        case 'go':
+            return './img/go.png'
+            break;
+        case 'text/javascript':
+            return './img/js.png'
+            break;
+        default:
+            return defaultImagePath
+            break;
+    }
+}
+
+function getType(file) {
+    if (file.type == "") {
+        let fileName = file.name.split('.')
+        return  fileName[fileName.length-1]
+    }
+
+
+
+    return file.type
 }

@@ -1,20 +1,23 @@
 #container {
-    background-color: red;
+    background-color: white;
     height: auto;
     width: rgb(92, 85, 85);
     min-height: 500px;
     align-items: center;
     display: flex;
     justify-content: center;
+    border: 2px dashed red;
+    border-radius: 10px;
 }
 
 
 #text-zone {
-    color: white;
+    color: black;
+    font-size: 30px;
 }
 
 .text-zone-drag-over{
-    color:black !important
+    color:black !important;
 }
 
 .container-files{
@@ -24,6 +27,7 @@
     align-content: space-between;
     justify-content: flex-end;
     align-items: baseline;
+    
 }
 
 #render-files{
